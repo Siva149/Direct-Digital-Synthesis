@@ -1,1 +1,13 @@
+module DDS (clock, reset, increment, phase, sine_out);
+input clock, reset;
+input [31:0] increment ;
+input [7:0]  phase;
+output wire signed [15:0] sine_out;
+reg [31:0]	accumulator;
+always@(posedge clock) begin
+  if (reset) accumulator <= 0 ;
+	else accumulator <= accumulator + increment  ;
+end
+sync_rom sineTable(.clock(clock), .address(accumulator[31:24]+phase),.sine(sine_out));
+endmodule
 
