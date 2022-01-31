@@ -1,1 +1,14 @@
-
+Next work in progress & Ideas to Implement it: 
+            1. LED Blink on the Board on every rotation(or Frequency count)
+                    i. Assigning the Increment value to the LED Constraints in XDC file.
+            
+            2. Creating the QPSK & O-QPSK Signal from the obtained Sine wave.
+                    i. Its a quite challenging one. For example; given the 8 bit i/p data, its been splitted to ODD and EVEN bits using Splitter(Serial to parallel converter)
+                    ii. Even bits are considered as Inphase and ODD bits are considered as Quadrature Phase. With the 90 deg phase shift mulipled with the obtained Sine wave (Local osc), 
+                        We can create the decent QPSK/O-Qpsk Signal 
+                    
+            3. Displaying the obtained signals on the monitor using VGA Connector and cable
+                     i. Instantiating  VGA Controller with Specifications like refresh rate/DPI, Assign the signals to the VGA Contraints in the XDC File 
+                    
+ Hopefully its interesting :) 
+                     
