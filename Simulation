@@ -1,1 +1,31 @@
+module testbench();
+reg clk, reset;
+reg [31:0] index;
+wire signed [15:0]  testbench_out;
+initial begin
+		clk = 1'b0;
+		index  = 32'd0;
+end
+		always begin
+		#10
+		clk  = !clk;
+	end
+	initial begin
+		reset  = 1'b0;
+		#10 
+		reset  = 1'b1;
+		#30
+		reset  = 1'b0;
+	end
+	always @ (posedge clk) begin
+		index  <= index + 32'd1;
+	end
+DDS DUT   (.clock(clk), 
+        .reset(reset),
+				.increment({18'h02000, 14'b0}), 
+				.phase(8'd0),
+				.sine_out(testbench_out));
+	
+endmodule
 
+Included the Simulation file in Readme file 
