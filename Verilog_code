@@ -11,7 +11,29 @@ end
 sync_rom sineTable(.clock(clock), .address(accumulator[31:24]+phase),.sine(sine_out));
 endmodule
 
-module sync_rom (clock, address, sine);
+
+
+module sync_rom
+#
+(parameter WIDTH = 16,
+parameter Depth = 256)
+(input clock,
+input [Depth-1:0] address,
+output reg [Depth-1:0] sine);
+reg[ WIDTH-1:0] sine_rom[Depth -1:0];
+initial begin
+      $readmemh("C:/Users/jayac/Downloads/sine-lut.txt",sine_rom);
+ end
+always@(posedge clock)
+begin
+sine <= sine_rom[address];
+end
+endmodule
+
+
+
+
+//module sync_rom (clock, address, sine);
 input clock;
 input [7:0] address;
 output [15:0] sine;
